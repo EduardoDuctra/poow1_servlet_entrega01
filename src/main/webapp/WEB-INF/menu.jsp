@@ -27,6 +27,9 @@
     </div>
   </div>
 
+  <div class="menu">
+
+
   <h1>Menu de Tarefas</h1>
 
   <ul>
@@ -76,6 +79,8 @@
 
 
 </ul>
+
+  </div>
 
 <c:if test="${not empty msg}">
   <p>${msg}</p>
