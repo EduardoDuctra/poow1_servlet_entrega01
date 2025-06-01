@@ -147,9 +147,9 @@ ul {
   color: black;
   height: 20vw;
   width: 20vw;
-  min-width: 120px; /* tamanho mínimo para não ficar pequeno demais */
+  min-width: 120px;
   min-height: 120px;
-  max-width: 250px; /* tamanho máximo */
+  max-width: 250px;
   max-height: 250px;
 
   padding: 12px;
@@ -165,9 +165,8 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 10px;
-  position: relative;
-  z-index: 1;
 }
 
 .button_menu:hover {
@@ -252,10 +251,12 @@ ul {
   background-size: 10px 6px;
 }
 
-
-.menu {
-  width: 100%;
+.menu_buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
 }

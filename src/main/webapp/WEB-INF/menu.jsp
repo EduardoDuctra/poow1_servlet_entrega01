@@ -29,10 +29,8 @@
 
   <div class="menu">
 
+  <ul class="menu_buttons">
 
-  <h1>Menu de Tarefas</h1>
-
-  <ul>
     <li>
       <form action="${pageContext.request.contextPath}/tasks" method="get">
         <input type="hidden" name="action" value="criar" />
@@ -41,7 +39,7 @@
                   class="icon_button"
                   src="assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
                   alt="Ícone Criar Tarefa"
-          />
+          /><br/>
           Criar Tarefa
         </button>
       </form>
