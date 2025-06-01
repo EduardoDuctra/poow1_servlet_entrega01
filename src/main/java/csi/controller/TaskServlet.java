@@ -50,7 +50,7 @@ public class TaskServlet extends HttpServlet {
             System.out.println("Codigo Usuario: " + user.getId());
             List<Task> pendingTasks = db_task.listTasks(user.getId());
 
-            // Imprime detalhes das tarefas no console
+
             for (Task task : pendingTasks) {
 
                 System.out.println("Task ID: " + task.getId()
@@ -86,7 +86,7 @@ public class TaskServlet extends HttpServlet {
             return;
         }else if ("trabalho".equals(action) || "pessoal".equals(action) || "estudo".equals(action)) {
 
-            // Supondo que você esteja recebendo isso como parâmetro
+
             String categoryStr = action;
 
             Category category = new Category();

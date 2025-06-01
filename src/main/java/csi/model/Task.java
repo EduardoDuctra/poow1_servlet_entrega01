@@ -53,11 +53,11 @@ public class Task {
     }
 
     public User getUser() {
-        return user;  // Retorna o objeto User
+        return user;
     }
 
     public void setUser(User user) {
-        this.user = user;  // Define o objeto User
+        this.user = user;
     }
 
     public Category getCategory() {

@@ -35,10 +35,10 @@ public class DataBaseServiceUser {
 
     public String insertUser(User user) {
         try {
-            // Chama o insertUser do UserDAO, que agora retorna o objeto User com o ID atualizado
+
             User insertedUser = new UserDAO(connection).insertUser(user);
 
-            // Verifica se o ID foi atribuído corretamente
+
             if (insertedUser != null && insertedUser.getId() != null) {
                 return "Usuário inserido com sucesso! ID: " + insertedUser.getId();
             } else {
@@ -73,7 +73,7 @@ public class DataBaseServiceUser {
             return new UserDAO(connection).searchEmail(email);
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // Retorna null se ocorrer algum erro
+            return null;
         }
     }
 

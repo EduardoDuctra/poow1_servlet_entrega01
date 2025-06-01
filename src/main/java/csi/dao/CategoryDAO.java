@@ -38,12 +38,12 @@ public class CategoryDAO {
         Category category = null;
         try {
             PreparedStatement psmt = connection.prepareStatement(sql);
-            psmt.setInt(1, id);  // Usando o "cod" para buscar a categoria
+            psmt.setInt(1, id);
             ResultSet rs = psmt.executeQuery();
 
             if (rs.next()) {
                 category = new Category();
-                category.setId(rs.getInt("id"));  // A coluna 'cod' será mapeada para o id
+                category.setId(rs.getInt("id"));
                 category.setName(rs.getString("nome"));
             }
         } catch (SQLException e) {
