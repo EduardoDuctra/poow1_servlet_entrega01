@@ -1,0 +1,248 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* altera direção para vertical */
+  justify-content: center;
+  align-items: center;
+
+  border: 0.5px solid rgb(216, 216, 216);
+  border-radius: 0px;
+  height: 75vh;
+  width: 95vh;
+  box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.5);
+  overflow: hidden; /* evita que imagens extrapolem */
+}
+
+/* Imagem de fundo da container, com classe específica */
+.container .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cobre toda a área da container */
+  z-index: 0; /* atrás do conteúdo */
+  opacity: 0.15; /* ajusta transparência para não atrapalhar */
+  pointer-events: none; /* não interfere em clique */
+}
+
+/* Outras imagens dentro da container não serão afetadas */
+
+.title_page {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login_form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 640px;
+  height: 300px; /* um pouco maior que o form */
+}
+
+.form_input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px; /* espaçamento entre os grupos */
+}
+
+.form_input label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form_input input {
+  width: 100%; /* para ocupar toda a largura disponível da div pai */
+  padding: 10px; /* deixa o campo com espaçamento interno confortável */
+  border: 1px solid #ccc; /* borda padrão clara */
+  border-radius: 10px; /* borda arredondada */
+  box-sizing: border-box; /* garante que padding e borda não aumentem o tamanho total */
+  font-size: 16px; /* fonte maior para melhor visual */
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button_group {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 10px; /* espaço entre os botões */
+  margin-top: 20px;
+}
+
+button {
+  background-color: #c0c0c0; /* cor de fundo */
+  color: rgb(0, 0, 0); /* cor do texto */
+  padding: 12px 24px; /* espaçamento interno (altura e largura) */
+  border: none; /* remove borda padrão */
+  border-radius: 8px; /* cantos arredondados */
+  font-size: 16px; /* tamanho da fonte */
+  font-weight: bold; /* texto em negrito */
+  cursor: pointer; /* muda cursor para mãozinha */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* sombra sutil */
+  transition: background-color 0.3s ease; /* animação suave na cor */
+}
+
+button:hover {
+  background-color: #afafaf; /* cor de fundo ao passar o mouse */
+}
+
+h2 {
+  text-align: center;
+}
+h3 {
+  color: black;
+}
+p {
+  color: black;
+}
+
+.navegation_container {
+  display: flex;
+  flex-direction: row; /* coloca lado a lado */
+  width: 100%; /* ocupa toda a largura da tela */
+}
+
+.navegation_user {
+  width: 50%; /* metade da largura */
+  background-color: rgb(255, 255, 255);
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navegation_user_update {
+  width: 50%;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  align-items: flex-end; /* Alinha os itens (ex: botões, formulários) à direita */
+  text-align: right; /* Alinha o texto à direita */
+}
+
+ul {
+  display: flex; /* ativa flexbox para os itens da lista */
+  gap: 10px; /* espaço entre os botões */
+  padding: 0; /* remove padding padrão do ul */
+  list-style: none; /* remove marcadores da lista */
+}
+
+.button_menu {
+  background-color: #ffffff;
+  color: black;
+  height: 250px;
+  width: 250px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+
+  display: flex; /* flex container */
+  flex-direction: column; /* empilha itens na vertical */
+  justify-content: center; /* centra verticalmente */
+  align-items: center; /* centra horizontalmente */
+  gap: 10px; /* espaço entre ícone e texto */
+  position: relative; /* mantém padrão */
+  z-index: 1; /* garante que fique acima da imagem de fundo */
+}
+
+.button_menu:hover {
+  background-color: #afafaf;
+}
+
+.button_menu img.icon_button {
+  filter: brightness(0); /* deixa o ícone preto */
+  width: 48px;
+  height: 48px;
+  display: block;
+  position: static; /* garante que o ícone fique dentro do fluxo */
+}
+
+.button_category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* permite quebra de linha se necessário */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.button_category form {
+  margin: 0;
+}
+
+.button_category button {
+  background-color: #ffffff;
+  color: black;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.button_category button:hover {
+  background-color: #afafaf;
+}
+
+.button_list {
+  background-color: #ffffff;
+  color: black;
+  width: 48px; /* largura e altura iguais para formar o círculo */
+  height: 48px;
+  padding: 0; /* sem padding extra */
+  border: none;
+  border-radius: 50%; /* 100% ou 50% cria um círculo */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_input select {
+  padding: 10px 40px 10px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='10' viewBox='0 0 10 6' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M0 0l5 6 5-6z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 6px;
+}
+
