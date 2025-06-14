@@ -61,7 +61,7 @@ public class MenuServlet extends HttpServlet {
         if (session.getAttribute("loginTime") == null) {
 
 
-             // Formata para exibir na interface (loginTime)
+            // Formata para exibir
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String formattedDateTime = today.format(formatter);
             session.setAttribute("loginTime", formattedDateTime);

@@ -11,7 +11,7 @@ body {
 
 .page {
   display: flex;
-  flex-direction: row;  /* lado a lado */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -39,7 +39,7 @@ body {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  width: 100%;   /* ocupa toda a largura da .container */
+  width: 100%;
   max-width: 640px;
   height: 300px;
   box-sizing: border-box;
@@ -103,7 +103,6 @@ h3, p {
   color: black;
 }
 
-/* Container da imagem para ficar ao lado do formulário */
 .page_image {
   flex: 1 1 50%;
   display: flex;
@@ -135,11 +134,9 @@ h3, p {
   -moz-appearance: none;
   appearance: none;
 
-  /*background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='10' viewBox='0 0 10 6' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M0 0l5 6 5-6z'/></svg>");*/
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 10px 6px;
 }
 
 
-/* Removido o position absolute da imagem para não sobrepor o conteúdo */
