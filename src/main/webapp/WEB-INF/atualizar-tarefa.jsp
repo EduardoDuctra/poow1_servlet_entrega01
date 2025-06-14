@@ -30,6 +30,12 @@
       <input type="text" id="descricao" name="descricao" value="${task.description}">
     </div>
 
+    <div class="form_input">
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required>
+    </div>
+
+
     <div class="button_group">
       <button type="submit">Atualizar</button>
     </div>

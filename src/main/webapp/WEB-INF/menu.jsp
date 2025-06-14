@@ -13,10 +13,12 @@
 </head>
 <body>
 <div class="container">
+
   <div class="navegation_container">
     <div class="navegation_user">
       <h3>Bem-vindo, ${sessionScope.user.name}</h3>
       <p>ID de Usuário: ${sessionScope.user.id}</p>
+
     </div>
 
     <div class="navegation_user_update">
@@ -28,61 +30,88 @@
   </div>
 
   <div class="menu">
+    <ul class="menu_buttons">
+      <li>
+        <form action="${pageContext.request.contextPath}/tasks" method="get">
+          <input type="hidden" name="action" value="criar" />
+          <button type="submit" class="button_menu">
+            <img class="icon_button" src="assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Criar Tarefa" /><br/>
+            Criar Tarefa
+          </button>
+        </form>
+      </li>
 
-  <ul class="menu_buttons">
+      <li>
+        <form action="${pageContext.request.contextPath}/tasks" method="get">
+          <input type="hidden" name="action" value="listar-pendentes">
+          <button type="submit" class="button_menu">
+            <img class="icon_button" src="assets/menu_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Tarefas Pendentes" />
+            Tarefas Pendentes
+          </button>
+        </form>
+      </li>
 
-    <li>
-      <form action="${pageContext.request.contextPath}/tasks" method="get">
-        <input type="hidden" name="action" value="criar" />
-        <button type="submit" class="button_menu">
-          <img
-                  class="icon_button"
-                  src="assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="Ícone Criar Tarefa"
-          /><br/>
-          Criar Tarefa
-        </button>
-      </form>
-    </li>
+      <li>
+        <form action="${pageContext.request.contextPath}/tasks" method="get">
+          <input type="hidden" name="action" value="listar-concluidas">
+          <button type="submit" class="button_menu">
+            <img class="icon_button" src="assets/fact_check_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Tarefas Concluidas" />
+            Tarefas Concluídas
+          </button>
+        </form>
+      </li>
+    </ul>
+  </div>
 
+  <div class="menu_list">
 
-    <li>
-      <form action="${pageContext.request.contextPath}/tasks" method="get">
-        <input type="hidden" name="action" value="listar-pendentes">
-        <button type="submit" class="button_menu"> <img
-                class="icon_button"
-                src="assets/menu_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="Ícone Tarefas Pendentes"
-        />
-          Tarefas Pendentes
-        </button>
-      </form>
-    </li>
+    <h2>Tarefas para hoje - ${sessionScope.loginTime}</h2>
 
-
-  <li>
-    <form action="${pageContext.request.contextPath}/tasks" method="get">
-      <input type="hidden" name="action" value="listar-concluidas">
-      <button type="submit"class="button_menu">
-        <img
-                class="icon_button"
-                src="assets/fact_check_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="Ícone Tarefas Concluidos"
-        />
-        Tarefas Concluídas
-      </button>
-    </form>
-  </li>
-
-
-
-</ul>
+    <c:choose>
+      <c:when test="${empty tasks}">
+        <p>Não há tarefas pendentes.</p>
+      </c:when>
+      <c:otherwise>
+        <table>
+          <thead>
+          <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Prazo</th>
+            <th>Concluir</th>
+          </tr>
+          </thead>
+          <tbody>
+          <c:forEach var="task" items="${tasks}">
+            <tr>
+              <td>${task.title}</td>
+              <td>${task.description}</td>
+              <td>${task.date}</td>
+              <td>
+                <form action="${pageContext.request.contextPath}/menu" method="post">
+                  <input type="hidden" name="action" value="concluida" />
+                  <input type="hidden" name="taskId" value="${task.id}" />
+                  <button type="submit" class="button_list">
+                    <img
+                            class="icon_button"
+                            src="assets/check_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+                            alt="Ícone Concluída"
+                    />
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </c:forEach>
+          </tbody>
+        </table>
+      </c:otherwise>
+    </c:choose>
 
   </div>
 
-<c:if test="${not empty msg}">
-  <p>${msg}</p>
-</c:if>
+
+
+</div>
 
 </body>
 </html>

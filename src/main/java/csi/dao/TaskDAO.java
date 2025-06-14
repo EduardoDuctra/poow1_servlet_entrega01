@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TaskDAO {
@@ -22,15 +23,16 @@ public class TaskDAO {
     }
 
     public String insertTask(Task task) {
-        String sql = "INSERT INTO tarefa (titulo, descricao, concluido, codUsuario, codcategoria) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tarefa (titulo, descricao, concluido, data, codUsuario, codcategoria) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
 
             pstmt.setString(1, task.getTitle());
             pstmt.setString(2, task.getDescription());
             pstmt.setBoolean(3, task.isStatus());
-            pstmt.setInt(4, task.getUser().getId());
-            pstmt.setInt(5, task.getCategory().getId());
+            pstmt.setDate(4, java.sql.Date.valueOf(task.getDate()));
+            pstmt.setInt(5, task.getUser().getId());
+            pstmt.setInt(6, task.getCategory().getId());
 
 
             pstmt.executeUpdate();
@@ -42,24 +44,6 @@ public class TaskDAO {
         return "Tarefa cadastrada com sucesso!";
     }
 
-    public String deleteTask(int id) {
-        String sql = "DELETE FROM tarefa WHERE id = ?";
-
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-
-            int rowsAffected = pstmt.executeUpdate();
-
-            if (rowsAffected == 0) {
-                System.out.println("Nenhum usuário excluído, pois o ID não existe na tabela.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir usuário: " + e.getMessage());
-        }
-
-        return "Usuário excluído com sucesso!";
-    }
 
     public String deleteTasksByUserId(int userId) {
         String sql = "DELETE FROM tarefa WHERE codusuario = ?";
@@ -96,6 +80,14 @@ public class TaskDAO {
                 task.setId(rs.getInt("id"));
                 task.setTitle(rs.getString("titulo"));
                 task.setDescription(rs.getString("descricao"));
+
+                java.sql.Date sqlDate = rs.getDate("data");
+
+                if (sqlDate != null) {
+                    task.setDate(sqlDate.toLocalDate());  // converte java.sql.Date para LocalDate
+                } else {
+                    task.setDate(null);
+                }
                 task.setStatus(rs.getBoolean("concluido"));
             }
         } catch (SQLException e) {
@@ -108,13 +100,14 @@ public class TaskDAO {
 
 
     public String updateTask(Task task) {
-        String sql = "UPDATE tarefa SET titulo = ?, descricao = ?, concluido = ? WHERE id = ?";
+        String sql = "UPDATE tarefa SET titulo = ?, descricao = ?, concluido = ?, data = ? WHERE id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, task.getTitle());
             pstmt.setString(2, task.getDescription());
             pstmt.setBoolean(3, task.isStatus());
-            pstmt.setInt(4, task.getId());
+            pstmt.setDate(4, java.sql.Date.valueOf(task.getDate()));
+            pstmt.setInt(5, task.getId());
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -161,6 +154,16 @@ public class TaskDAO {
                     task.setId(rs.getInt("id"));
                     task.setTitle(rs.getString("titulo"));
                     task.setDescription(rs.getString("descricao"));
+
+
+                    java.sql.Date sqlDate = rs.getDate("data");
+
+                    if (sqlDate != null) {
+                        task.setDate(sqlDate.toLocalDate());  // converte java.sql.Date para LocalDate
+                    } else {
+                        task.setDate(null);
+                    }
+
                     task.setStatus(rs.getBoolean("concluido"));
 
                     User user = new User();
@@ -179,6 +182,50 @@ public class TaskDAO {
         }
         return tasks;
     }
+
+    public List<Task> getTasksByDay(int user_id, Date date) {
+        List<Task> tasks = new ArrayList<>();
+        String sql = "SELECT * FROM tarefa WHERE codusuario = ? AND concluido = true and data = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, user_id);
+            pstmt.setDate(2, new java.sql.Date(date.getTime()));
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Task task = new Task();
+                    task.setId(rs.getInt("id"));
+                    task.setTitle(rs.getString("titulo"));
+                    task.setDescription(rs.getString("descricao"));
+
+
+                    java.sql.Date sqlDate = rs.getDate("data");
+
+                    if (sqlDate != null) {
+                        task.setDate(sqlDate.toLocalDate());  // converte java.sql.Date para LocalDate
+                    } else {
+                        task.setDate(null);
+                    }
+
+                    task.setStatus(rs.getBoolean("concluido"));
+
+                    User user = new User();
+                    user.setId(rs.getInt("codusuario"));
+                    task.setUser(user);
+
+                    int categoriaId = rs.getInt("codcategoria");
+                    Category category = categoryDAO.getCategoryById(categoriaId);
+                    task.setCategory(category);
+
+                    tasks.add(task);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar tarefas por usuário: " + e.getMessage());
+        }
+        return tasks;
+    }
+
     public List<Task> getTasksByCategory(int user_id, Category category) {
         List<Task> tasks = new ArrayList<>();
         String sql = "SELECT * FROM tarefa WHERE codusuario = ? AND concluido = true and codcategoria = ?";
@@ -193,6 +240,15 @@ public class TaskDAO {
                     task.setId(rs.getInt("id"));
                     task.setTitle(rs.getString("titulo"));
                     task.setDescription(rs.getString("descricao"));
+
+                    java.sql.Date sqlDate = rs.getDate("data");
+
+                    if (sqlDate != null) {
+                        task.setDate(sqlDate.toLocalDate());  // converte java.sql.Date para LocalDate
+                    } else {
+                        task.setDate(null);
+                    }
+
                     task.setStatus(rs.getBoolean("concluido"));
 
                     User user = new User();
@@ -224,6 +280,15 @@ public class TaskDAO {
                     task.setId(rs.getInt("id"));
                     task.setTitle(rs.getString("titulo"));
                     task.setDescription(rs.getString("descricao"));
+
+                    java.sql.Date sqlDate = rs.getDate("data");
+
+                    if (sqlDate != null) {
+                        task.setDate(sqlDate.toLocalDate());  // converte java.sql.Date para LocalDate
+                    } else {
+                        task.setDate(null);
+                    }
+
                     task.setStatus(rs.getBoolean("concluido"));
 
 

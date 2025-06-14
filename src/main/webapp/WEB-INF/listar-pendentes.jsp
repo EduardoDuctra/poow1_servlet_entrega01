@@ -50,6 +50,8 @@
           <th>Título</th>
           <th>Descrição</th>
           <th>Categoria</th>
+          <th>Prazo</th>
+
           <th colspan="3">Ações</th>
         </tr>
         </thead>
@@ -60,6 +62,7 @@
             <td>${task.title}</td>
             <td>${task.description}</td>
             <td>${task.category.name}</td>
+            <td>${task.date}</td>
 
 
             <td>

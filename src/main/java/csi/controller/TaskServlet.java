@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet("/tasks")
@@ -45,6 +46,8 @@ public class TaskServlet extends HttpServlet {
         } else if ("listar-pendentes".equals(action)) {
 
             HttpSession session = request.getSession();
+
+
             User user = (User) session.getAttribute("user");
 
             System.out.println("Codigo Usuario: " + user.getId());
@@ -149,13 +152,19 @@ public class TaskServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+        request.setCharacterEncoding("UTF-8");
 
         if ("criar".equals(action)) {
             String title = request.getParameter("titulo");
             String desc = request.getParameter("descricao");
             String categoryStr = request.getParameter("categoria");
 
+            String dateStr = request.getParameter("data"); // Ex: "2025-06-03"
+            LocalDate date = LocalDate.parse(dateStr);      // converte string para LocalDate
+
+
             HttpSession session = request.getSession();
+
             User user = (User) session.getAttribute("user");
 
             Category category = new Category();
@@ -179,6 +188,7 @@ public class TaskServlet extends HttpServlet {
             t.setTitle(title);
             t.setDescription(desc);
             t.setStatus(true);
+            t.setDate(date);
             t.setUser(user);
             t.setCategory(category);
 
@@ -191,6 +201,9 @@ public class TaskServlet extends HttpServlet {
             String newTitle = request.getParameter("titulo");
             String newDesc = request.getParameter("descricao");
             String idStr = request.getParameter("id");
+            String dateStr = request.getParameter("data");  // nome da variável String vindo do form
+            LocalDate date = LocalDate.parse(dateStr);      // converte para LocalDate
+
 
             System.out.println("Id da Task no POST: "+ idStr);
 
@@ -211,6 +224,7 @@ public class TaskServlet extends HttpServlet {
                     t.setTitle(newTitle);
                     t.setDescription(newDesc);
                     t.setStatus(true);
+                    t.setDate(date);
 
                     db_task.updateTask(t);
                 }

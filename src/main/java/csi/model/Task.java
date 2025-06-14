@@ -1,23 +1,36 @@
 package csi.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Task {
 
     private Integer id;
     private String title;
     private String description;
     private boolean status;
+    private LocalDate date;
     private User user; // Agora apenas o objeto User
     private Category category;
 
     public Task() {}
 
-    public Task(Integer id, String title, String description, boolean status, User user, Category category) {
+    public Task(Integer id, String title, String description, boolean status, User user, Category category, LocalDate date) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
+        this.date = date;
         this.user = user;
         this.category = category;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Integer getId() {

@@ -9,6 +9,7 @@ import csi.util.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public class DataBaseServiceTask {
@@ -86,6 +87,10 @@ public class DataBaseServiceTask {
 
     public List<Task> listTasks(int id) {
         return new TaskDAO(connection).getTasks(id);
+    }
+
+    public List<Task> listTasksByDate(int id, Date date) {
+        return new TaskDAO(connection).getTasksByDay(id, date);
     }
 
     public List<Task> listFilterTasks(int id, Category category) {

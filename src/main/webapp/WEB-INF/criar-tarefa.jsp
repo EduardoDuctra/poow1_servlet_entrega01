@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleLogin.css" />
   <title>Criar Tarefa</title>
 </head>
 <body>
@@ -30,6 +30,11 @@
     <input type="text" id="descricao" name="descricao">
     </div>
 
+    <div class="form_input">
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required>
+    </div>
+
 
     <div class="form_input">
       <label for="categoria">Categoria:</label>
@@ -48,6 +53,8 @@
 
     <div class="form_input">
     <button type="submit">Criar</button>
+
+
 </div>
 
   </form>
