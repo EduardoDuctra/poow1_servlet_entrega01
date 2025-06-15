@@ -90,7 +90,7 @@ public class MenuServlet extends HttpServlet {
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
 
-                if ("concluida".equals(action)) {
+                if ("concluded".equals(action)) {
                         String idStr = request.getParameter("taskId");
                         System.out.println("Código da Task no POST para concluir: " + idStr);
 

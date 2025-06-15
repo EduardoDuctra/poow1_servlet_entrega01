@@ -16,7 +16,7 @@
   <h1 class="title_page">Criar Tarefa</h1>
 
   <form action="${pageContext.request.contextPath}/tasks" method="POST">
-    <input type="hidden" name="action" value="criar" />
+    <input type="hidden" name="action" value="create" />
 
     <input type="hidden" name="id" value="${task.id}" />
 

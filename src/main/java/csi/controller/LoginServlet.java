@@ -33,8 +33,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
 
-        if ("cadastrar".equals(action)) {
-            resp.sendRedirect(req.getContextPath() + "/user?action=cadastrar");
+        if ("register".equals(action)) {
+            resp.sendRedirect(req.getContextPath() + "/user?action=register");
             return;
         }
 

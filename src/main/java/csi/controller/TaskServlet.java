@@ -39,11 +39,11 @@ public class TaskServlet extends HttpServlet {
         String action = request.getParameter("action");
         System.out.println("Action recebida no doGet: " + action);
 
-        if ("criar".equals(action)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/criar-tarefa.jsp");
+        if ("create".equals(action)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/create-task.jsp");
             dispatcher.forward(request, response);
             return;
-        } else if ("listar-pendentes".equals(action)) {
+        } else if ("listPending".equals(action)) {
 
             HttpSession session = request.getSession();
 
@@ -63,10 +63,10 @@ public class TaskServlet extends HttpServlet {
 
             request.setAttribute("tasks", pendingTasks);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listar-pendentes.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/list-pending.jsp");
             dispatcher.forward(request, response);
             return;
-        } else if ("listar-concluidas".equals(action)) {
+        } else if ("listConcluded".equals(action)) {
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
@@ -84,7 +84,7 @@ public class TaskServlet extends HttpServlet {
 
             request.setAttribute("tasks", concludetTasks);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listar-concluidas.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/list-concluded.jsp");
             dispatcher.forward(request, response);
             return;
         }else if ("trabalho".equals(action) || "pessoal".equals(action) || "estudo".equals(action)) {
@@ -117,13 +117,13 @@ public class TaskServlet extends HttpServlet {
 
             request.setAttribute("tasks", filterTasks);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listar-pendentes.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/list-pending.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
 
-        else if ("editar".equals(action)) {
+        else if ("edit".equals(action)) {
 
             String idStr = request.getParameter("id");
             System.out.println("Codigo da Task no GET: " + idStr);
@@ -141,7 +141,7 @@ public class TaskServlet extends HttpServlet {
                 request.setAttribute("task", t);
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atualizar-tarefa.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/update-task.jsp");
             dispatcher.forward(request, response);
             return;
         }
@@ -154,7 +154,7 @@ public class TaskServlet extends HttpServlet {
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
 
-        if ("criar".equals(action)) {
+        if ("create".equals(action)) {
             String title = request.getParameter("titulo");
             String desc = request.getParameter("descricao");
             String categoryStr = request.getParameter("categoria");
@@ -194,9 +194,9 @@ public class TaskServlet extends HttpServlet {
 
             db_task.insertTask(t);
 
-            response.sendRedirect(request.getContextPath() + "/tasks?action=listar-pendentes");
+            response.sendRedirect(request.getContextPath() + "/tasks?action=listPending");
 
-        } else if ("editar".equals(action)) {
+        } else if ("edit".equals(action)) {
 
             String newTitle = request.getParameter("titulo");
             String newDesc = request.getParameter("descricao");
@@ -230,8 +230,8 @@ public class TaskServlet extends HttpServlet {
                 }
             }
 
-            response.sendRedirect(request.getContextPath() + "/tasks?action=listar-pendentes");
-        }else if ("deletar".equals(action)) {
+            response.sendRedirect(request.getContextPath() + "/tasks?action=listPending");
+        }else if ("delete".equals(action)) {
             String idStr = request.getParameter("id");
             System.out.println("Código da Task no POST para deletar: " + idStr);
 
@@ -242,8 +242,8 @@ public class TaskServlet extends HttpServlet {
                 System.out.println("ID inválido para deleção: " + idStr);
             }
 
-            response.sendRedirect(request.getContextPath() + "/tasks?action=listar-pendentes");
-        } else if("concluida".equals(action)){
+            response.sendRedirect(request.getContextPath() + "/tasks?action=listPending");
+        } else if("concluded".equals(action)){
             String idStr = request.getParameter("taskId");
             System.out.println("Código da Task no POST para concluir: " + idStr);
 
@@ -253,7 +253,7 @@ public class TaskServlet extends HttpServlet {
             } catch (NumberFormatException e) {
                 System.out.println("ID inválido para deleção: " + idStr);
             }
-            response.sendRedirect(request.getContextPath() + "/tasks?action=listar-pendentes");
+            response.sendRedirect(request.getContextPath() + "/tasks?action=listPending");
         }
 
     }

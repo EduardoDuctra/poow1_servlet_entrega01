@@ -23,7 +23,7 @@
 
       <div class="button_category">
         <form action="${pageContext.request.contextPath}/tasks" method="get">
-          <input type="hidden" name="action" value="listar-pendentes" />
+          <input type="hidden" name="action" value="listPending" />
           <button type="submit">Listar Todas</button>
         </form>
 
@@ -67,7 +67,7 @@
 
             <td>
               <form action="${pageContext.request.contextPath}/tasks" method="post">
-                <input type="hidden" name="action" value="concluida" />
+                <input type="hidden" name="action" value="concluded" />
                 <input type="hidden" name="taskId" value="${task.id}" />
                 <button type="submit" class="button_list">
                   <img
@@ -81,7 +81,7 @@
 
             <td>
               <form action="${pageContext.request.contextPath}/tasks" method="get">
-                <input type="hidden" name="action" value="editar" />
+                <input type="hidden" name="action" value="edit" />
                 <input type="hidden" name="id" value="${task.id}" />
                 <button type="submit" class="button_list">
                   <img
@@ -95,7 +95,7 @@
 
             <td>
               <form action="${pageContext.request.contextPath}/tasks" method="post">
-                <input type="hidden" name="action" value="deletar" />
+                <input type="hidden" name="action" value="delete" />
                 <input type="hidden" name="id" value="${task.id}" />
                 <button type="submit" class="button_list">
                   <img
@@ -116,7 +116,7 @@
   <br />
 
   <form action="${pageContext.request.contextPath}/menu" method="get">
-    <input type="hidden" name="action" value="voltar" />
+    <input type="hidden" name="action" value="back" />
     <button type="submit">Voltar</button>
   </form>
 </div>

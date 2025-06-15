@@ -28,14 +28,14 @@ public class UserServlet extends HttpServlet {
         String action = request.getParameter("action");
         System.out.println("Action recebida no doGet: " + action);
 
-        if ("cadastrar".equals(action)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/cadastrar-usuario.jsp");
+        if ("register".equals(action)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/register-user.jsp");
             dispatcher.forward(request, response);
             return;
 
-        } else if ("atualizar".equals(action)) {
+        } else if ("update".equals(action)) {
 
-            // Obtem a sessção atual, sem criar uma nova. Usa o usuário logado
+            // Obtem a sessção atual, sem create uma nova. Usa o usuário logado
             HttpSession session = request.getSession(false);
 
             //se a sessão é nula (ngn logado) vai para o index
@@ -54,7 +54,7 @@ public class UserServlet extends HttpServlet {
             //Apenas atualizei o user da sessão. O que foi passado no LoginServlet
             request.setAttribute("user", loggedUser);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atualizar-usuario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/update-user.jsp");
             dispatcher.forward(request, response);
             return;
         }
@@ -70,7 +70,7 @@ public class UserServlet extends HttpServlet {
         System.out.println("Action recebida no doPost: " + action);
 
         try {
-            if ("cadastrar".equals(action)) {
+            if ("register".equals(action)) {
 
                 String name = request.getParameter("nome");
                 String email = request.getParameter("email");
@@ -103,13 +103,13 @@ public class UserServlet extends HttpServlet {
                 return;
             }
 
-            // Pego os parâmetros aqui para usar no atualizar
+            // Pego os parâmetros aqui para usar no update
             String name = request.getParameter("nome");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
 
-            if ("deletar".equals(action)) {
+            if ("delete".equals(action)) {
 
                 int id = sessionUser.getId();
 
@@ -120,7 +120,7 @@ public class UserServlet extends HttpServlet {
                 session.invalidate();
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
 
-            } else if ("atualizar".equals(action)) {
+            } else if ("update".equals(action)) {
 
                 sessionUser.setName(name);
                 sessionUser.setEmail(email);
@@ -133,7 +133,7 @@ public class UserServlet extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/menu");
 
-            } else if ("voltar".equals(action)) {
+            } else if ("back".equals(action)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menu.jsp");
                 dispatcher.forward(request, response);
             }
@@ -142,7 +142,7 @@ public class UserServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("msg", "Erro: " + e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atualizar-usuario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/update-user.jsp");
             dispatcher.forward(request, response);
         }
     }

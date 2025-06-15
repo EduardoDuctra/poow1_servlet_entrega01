@@ -37,7 +37,7 @@
 
                 <div class="button_group">
                     <button type="submit" name="action" value="logar">Logar</button>
-                    <button type="submit" name="action" value="cadastrar">Cadastrar Usuário</button>
+                    <button type="submit" name="action" value="register">Cadastrar Usuário</button>
                 </div>
             </form>
         </div>

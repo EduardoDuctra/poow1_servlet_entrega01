@@ -16,7 +16,7 @@
   <h1>Cadastro de Usuário</h1>
 
   <form action="${pageContext.request.contextPath}/user" method="POST">
-    <input type="hidden" name="action" value="cadastrar" />
+    <input type="hidden" name="action" value="register" />
 
     <div class="form_input">
       <label for="nome">Nome:</label>

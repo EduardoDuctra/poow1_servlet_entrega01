@@ -47,7 +47,7 @@
 <br>
 
 <form action="${pageContext.request.contextPath}/menu" method="get">
-  <input type="hidden" name="action" value="voltar" />
+  <input type="hidden" name="action" value="back" />
   <button type="submit">Voltar</button>
 </form>
 </div>

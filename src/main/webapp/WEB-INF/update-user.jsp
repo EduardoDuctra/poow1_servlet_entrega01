@@ -32,11 +32,11 @@
 
   </div>
 
-  <button type="submit" name="action" value="atualizar">Atualizar</button>
-  <button type="submit" name="action" value="deletar">Deletar</button>
+  <button type="submit" name="action" value="update">Atualizar</button>
+  <button type="submit" name="action" value="delete">Deletar</button>
 
   <form action="/menu" method="get">
-    <button type="submit" name="action" value="voltar">Voltar ao Menu</button>
+    <button type="submit" name="action" value="back">Voltar ao Menu</button>
   </form>
 
 </form>

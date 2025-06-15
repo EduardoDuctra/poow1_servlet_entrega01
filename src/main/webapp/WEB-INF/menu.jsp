@@ -23,7 +23,7 @@
 
     <div class="navegation_user_update">
       <form action="${pageContext.request.contextPath}/user" method="get">
-        <input type="hidden" name="action" value="atualizar" />
+        <input type="hidden" name="action" value="update" />
         <button type="submit">Meus Dados</button>
       </form>
     </div>
@@ -33,7 +33,7 @@
     <ul class="menu_buttons">
       <li>
         <form action="${pageContext.request.contextPath}/tasks" method="get">
-          <input type="hidden" name="action" value="criar" />
+          <input type="hidden" name="action" value="create" />
           <button type="submit" class="button_menu">
             <img class="icon_button" src="assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Criar Tarefa" /><br/>
             Criar Tarefa
@@ -43,7 +43,7 @@
 
       <li>
         <form action="${pageContext.request.contextPath}/tasks" method="get">
-          <input type="hidden" name="action" value="listar-pendentes">
+          <input type="hidden" name="action" value="listPending">
           <button type="submit" class="button_menu">
             <img class="icon_button" src="assets/menu_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Tarefas Pendentes" />
             Tarefas Pendentes
@@ -53,7 +53,7 @@
 
       <li>
         <form action="${pageContext.request.contextPath}/tasks" method="get">
-          <input type="hidden" name="action" value="listar-concluidas">
+          <input type="hidden" name="action" value="listConcluded">
           <button type="submit" class="button_menu">
             <img class="icon_button" src="assets/fact_check_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone Tarefas Concluidas" />
             Tarefas Concluídas
@@ -89,7 +89,7 @@
               <td>${task.date}</td>
               <td>
                 <form action="${pageContext.request.contextPath}/menu" method="post">
-                  <input type="hidden" name="action" value="concluida" />
+                  <input type="hidden" name="action" value="concluded" />
                   <input type="hidden" name="taskId" value="${task.id}" />
                   <button type="submit" class="button_list">
                     <img
